@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taller</title>
+    <link href="Estilos/css/all.min.css" rel="stylesheet" />
+
+    <link href="Estilos/daterangepicker.css" rel="stylesheet" />
+
+    <link href="Estilos/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <link href="Estilos/select2.min.css" rel="stylesheet" />
+    <link href="Estilos/select2-bootstrap4.min.css" rel="stylesheet" />
+
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12" id="dvMenu">
+                </div>
+                <div class="col-md-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">TALLER DE AUTOS</h3>
+                        </div>
+
+                        <form id="frmIncapacidades">
+                            <div class="card-body">
+                                <div class="card card-gray-dark">
+                                    <div class="card-header">
+                                        <h3 class="card-title">ADMINISTRACIÓN DEL TALLER</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <br />
+                                                <a href="Vehiculo.html"> <button type="button" id="btnInsertar" class="btn-block btn-lg btn-primary">VEHÍCULOS</button></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <br />
+                                                <a href="Empleado.html"> <button type="button" id="btnInsertar" class="btn-block btn-lg btn-primary">EMPLEADOS</button></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <br />
+                                                <a href="Reparacion.html"> <button type="button" id="btnInsertar" class="btn-block btn-lg btn-primary">REPARACIONES</button></a>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="card-footer">
+                                <div id="dvMensaje" class=""></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="../Scripts/select2.min.js"></script>
+
+    <script src="../Scripts/moment.min.js"></script>
+    <script src="../Scripts/jquery.inputmask.min.js"></script>
+
+    <script src="../Scripts/daterangepicker.js"></script>
+
+    <script src="../Scripts/tempusdominus-bootstrap-4.min.js"></script>
+
+    <script src="../Scripts/adminlte.js"></script>
+    <script>
+        $(function () {
+            $("#dvMenu").load("../Paginas/Menu.html");
+
+            $('#cboPaises').select2();
+            $('#cboEstados').select2();
+
+
+            $('#cboMultiple').select2({
+                theme: 'bootstrap4'
+            })
+
+            $('#dtmFecha').datetimepicker({
+                format: 'L'
+            });
+
+            $('#dthFechaHora').datetimepicker({ icons: { time: 'far fa-clock' } });
+            $('[data-mask]').inputmask();
+
+            $('#RangoFechas').daterangepicker();
+
+            $('#RangoFechaHora').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            });
+
+            $('#tmHoraInicio').datetimepicker({
+                format: 'LT'
+            });
+        })
+    </script>
+</body>
+</html>
