@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>REPARACIÓN</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="Estilos/css/all.min.css" rel="stylesheet" />
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+
+    <link href="Estilos/dataTables.min.css" rel="stylesheet" />
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="dvMenu">
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">FACTURACIÓN</h3>
+                        </div>
+                        <form id="frmIncapacidades">
+                            <div class="card-body">
+                                <div class="card card-gray-dark">
+                                    <div class="card-header">
+                                        <h3 class="card-title">DATOS ENTRADA</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-body bg-gray">
+                                            <div>
+                                                <h5 class="card-subtitle">PRODUCTOS</h5>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="cboTipoProducto">TIPO DE PRODUCTO</label>
+                                                        <select id="cboTipoProducto" class="form-control" onchange="LlenarComboProducto()">
+                                                            <option value="0">SELECCIONAR</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="cboNombreProducto">NOMBRE DEL PRODUCTO</label>
+                                                        <select id="cboNombreProducto" class="form-control" onchange="PresentarValorUnitarioProducto()">
+                                                            <option value="0">SELECCIONAR</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtPrecioProducto">PRECIO</label>
+                                                        <input type="number" class="form-control bloquear" id="txtPrecioProducto" placeholder="Precio unitario" readonly>
+                                                        <input type="text" class="form-control" id="txtIdProducto" placeholder="Codigo producto" hidden>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCantidad">CANTIDAD</label>
+                                                        <input type="number" class="form-control bloquear" id="txtCantidad" placeholder="Cantidad">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br />
+                                                    <button type="button" id="btnGrabarProducto" class="btn-block btn-lg btn-primary">Grabar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div>
+                                                <h5 class="card-subtitle">REPARACIONES</h5>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtPlaca">PLACA DEL VEHÍCULO</label>
+                                                        <input type="text" class="form-control bloquear" id="txtPlaca" placeholder="Placa del vehículo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="cboTipoReparacion">TIPO REPARACIÓN</label>
+                                                        <select id="cboTipoReparacion" class="form-control" onchange="LlenarComboReparacion()">
+                                                            <option value="0">SELECCIONAR</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="cboReparaciones">REPARACIÓN</label>
+                                                        <select id="cboReparaciones" class="form-control" onchange="PresentarValorReparacion()">
+                                                            <option value="0">SELECCIONAR</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCostoReparacion">COSTO REPARACIÓN</label>
+                                                        <input type="number" class="form-control bloquear" id="txtCostoReparacion" placeholder="Costo de la reparación" readonly>
+                                                        <input type="text" class="form-control" id="txtIdReparacion" placeholder="Codigo reparacion" hidden>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaReparacion">FECHA</label>
+                                                        <input type="date" class="form-control bloquear" id="txtFechaReparacion" placeholder="Fecha">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br />
+                                                    <button type="button" id="btnGrabarReparacion" class="btn-block btn-lg btn-primary">Grabar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body bg-gray">
+                                            <div>
+                                                <h5 class="card-subtitle">SERVICIOS ADICIONALES</h5>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtPlacaS">PLACA DEL VEHÍCULO</label>
+                                                        <input type="text" class="form-control bloquear" id="txtPlacaS" placeholder="Placa del vehículo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="cboServicios">SERVICIO</label>
+                                                        <select id="cboServicios" class="form-control" onchange="PresentarValorServicio()">
+                                                            <option value="0">SELECCIONAR</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCostoServicio">COSTO SERVICIO</label>
+                                                        <input type="number" class="form-control bloquear" id="txtCostoServicio" placeholder="Costo del servicio" readonly>
+                                                        <input type="text" class="form-control" id="txtIdServicio" placeholder="Codigo reparacion" hidden>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaServicio">FECHA</label>
+                                                        <input type="date" class="form-control bloquear" id="txtFechaServicio" placeholder="Fecha">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br />
+                                                    <button type="button" id="btnGrabarServicio" class="btn-block btn-lg btn-primary">Grabar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div>
+                                                <h5 class="card-subtitle">FACTURA</h5>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtIdFactura">ID FACTURA</label>
+                                                        <input type="text" class="form-control bloquear" id="txtIdFactura" placeholder="Id de factura" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtTotal">TOTAL</label>
+                                                        <input type="number" class="form-control bloquear" id="txtTotal" placeholder="Total" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="txtFechaFactura">FECHA</label>
+                                                        <input type="date" class="form-control bloquear" id="txtFechaFactura" placeholder="Fecha">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <br />
+                                                    <button type="button" id="btnGrabarfactura" class="btn-block btn-lg btn-primary">Grabar factura</button>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div id="dvMensaje" class=""></div>
+                                            </div>
+                                            <h5 class="text-bold">TABLA PRODUCTOS</h5>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table id="tblProductos" class="table table-bordered table-striped" style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Eliminar</th>
+                                                                <th>Id_Tipo_Producto</th>
+                                                                <th>Tipo_producto</th>
+                                                                <th>Codigo</th>
+                                                                <th>Producto</th>
+                                                                <th>Cantidad</th>
+                                                                <th>ValorUnitario</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <h5 class="text-bold">TABLA REPARACIONES</h5>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table id="tblReparaciones" class="table table-bordered table-striped" style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Eliminar</th>
+                                                                <th>Id_tipo_Reparacion</th>
+                                                                <th>Tipo_reparacion</th>
+                                                                <th>Id_reparacion</th>
+                                                                <th>Reparacion</th>
+                                                                <th>Placas_vehiculo</th>
+                                                                <th>Costo</th>
+                                                                <th>Fecha_reparación</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <h5 class="text-bold">TABLA SERVICIOS ADICIONALES</h5>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table id="tblServicios" class="table table-bordered table-striped" style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Eliminar</th>
+                                                                <th>Id_Servicio_adicional</th>
+                                                                <th>Servicio_adicional</th>
+                                                                <th>Placas_vehiculo</th>
+                                                                <th>Precio</th>
+                                                                <th>Fecha_servicio</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+
+    <script src="Scripts/Comunes/Combos.js"></script>
+    <script src="Scripts/Comunes/Tablas.js"></script>
+
+    <script src="Scripts/Reparacion.js"></script>
+</body>
+</html>
